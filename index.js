@@ -6,15 +6,18 @@ var methodOverride = require('method-override')
 var cors = require('cors');
 var mysql = require('mysql');
  
-var app = express();
+var app = express(); 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(cors());
 const fileUpload = require('express-fileupload');
 
-// import Modules/Controllers
 
+app.listen(process.env.PORT || 8081);  // Start at Port
+
+
+// import Modules/Controllers
 var login = require('./login');
 var signup = require('./signup');
 
@@ -55,8 +58,6 @@ var con = mysql.createConnection({
 
 
 
-app.listen(process.env.PORT || 8081);
-  
 
 
 app.post('/signup', function(req, res) {
