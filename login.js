@@ -3,9 +3,9 @@
 
 module.exports = {
 
-  foo: function (email, pass, con, res) {
-  	console.log('checking')
-    let sql = "SELECT * FROM  users where (email = '"+email+"' AND password = '"+pass+"')";
+  login: (req, res, con) =>{
+  	console.log('checking');
+    let sql = "SELECT * FROM  users where (email = '"+req.body.email+"' AND password = '"+req.body.password+"')";
 	  con.query(sql, function (err, result) {
 	    if (err) throw err;
 	    console.log(result);

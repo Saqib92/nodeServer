@@ -16,6 +16,7 @@ const fileUpload = require('express-fileupload');
 // import Modules/Controllers
 
 var login = require('./login');
+var signup = require('./signup');
 
 
 //connecting to DataBase
@@ -60,32 +61,21 @@ app.listen(process.env.PORT || 8081);
 
 app.post('/signup', function(req, res) {
 
-function addUser(email, pass, phone){
-
-  var sql = "INSERT INTO users (email, password, phone) VALUES ('"+email+"', '"+pass+"', '"+phone+"')";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("1 record inserted");
-      res.json({"status": "true", "message": "User Inserted"});
-    
-  });
-
-
-}
-   var email = req.body.email;
-    var pass = req.body.password;
-    var phone = req.body.phone
-
-addUser(email, pass, phone);
-
+	signup.signup(req, res, con)
    
 
 });
 
-app.post('/abc', (req, res)=>{
-	let con2 = con;
-	login.foo(req.body.email, req.body.password, con2, res);
- //   res.json({"hello":"world"})
+
+
+app.post('/login', (req, res)=>{
+	login.login(req, res, con);
+})
+
+app.get('/abc/:id', (req, res)=>{
+	console.log(req.query);
+	//res.send('id: ' +  req.params.id);
+	res.send({id: req.params.id, data: req.query});
 })
 
 
