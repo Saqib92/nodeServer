@@ -37,6 +37,7 @@ var con = mysql.createConnection({
   });
 
   // To Create DataBase umcomment this.
+  
 /*con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
